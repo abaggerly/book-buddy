@@ -1,8 +1,13 @@
-import { NavLink } from 'react-router';
-import { useAuth } from '../Context/AuthContext';
+// Navbar.jsx
+import { NavLink } from "react-router-dom";   // ← fix import
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { token, logout } = useAuth();
+
+  // helper for active link styling (RRv6)
+  const linkCx = ({ isActive }) =>
+    `text-decoration-none bb-link ${isActive ? "bb-link-active" : ""}`;
 
   return (
     <header className="bb-navbar border-bottom">
@@ -15,15 +20,21 @@ const Navbar = () => {
 
         {/* Links (right) */}
         <nav className="d-flex align-items-center gap-3">
-          <NavLink to="/books" className="text-decoration-none bb-link">Books</NavLink>
+          <NavLink to="/books" className={linkCx}>Books</NavLink>
 
           {token ? (
             <>
-              <NavLink to="/account" className="text-decoration-none bb-link">Account</NavLink>
-              <button className="btn btn-link p-0 bb-link" onClick={logout}>Log out</button>
+              <NavLink to="/account" className={linkCx}>Account</NavLink>
+              <button
+                type="button"
+                className="btn btn-link p-0 bb-link"
+                onClick={logout}
+              >
+                Log out
+              </button>
             </>
           ) : (
-            <NavLink to="/login" className="text-decoration-none bb-link">Log In</NavLink>
+            <NavLink to="/login" className={linkCx}>Log In</NavLink>
           )}
         </nav>
       </div>

@@ -10,6 +10,7 @@ import BookPage from './Pages/books/BookPage';
 import BooksPage from './Pages/books/BooksPage';
 import PageNotFound from './Pages/PageNotFound404';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 const routes = [
   {
